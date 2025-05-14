@@ -1,0 +1,23 @@
+<div>
+  @if (label()) {
+    <label [for]="id()" class="block text-sm/6 font-medium">{{ label() }}</label>
+  }
+  <div class="mt-2">
+    <input
+      [type]="type()"
+      [id]="id()"
+      [name]="name()"
+      [required]="required()"
+      [placeholder]="placeholder()"
+      [disabled]="disabled()"
+      [value]="value()"
+      (input)="onInputChange($event)"
+      (blur)="onTouched()"
+      class="input placeholder:text-sm">
+    @if (errorMessage()) {
+      <div class="text-sm text-red-500 mt-1">
+        {{ errorMessage() }}
+      </div>
+    }
+  </div>
+</div>

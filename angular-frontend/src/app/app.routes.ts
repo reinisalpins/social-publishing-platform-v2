@@ -1,0 +1,53 @@
+import {Routes} from '@angular/router';
+import {AuthLayoutComponent} from './layouts/auth-layout/auth-layout.component';
+import {LoginComponent} from './pages/login/login.component';
+import {AppLayoutComponent} from './layouts/app-layout/app-layout.component';
+import {FeedComponent} from './pages/feed/feed.component';
+import {RegisterComponent} from './pages/register/register.component';
+import {ProfileComponent} from './pages/profile/profile.component';
+import {PostComponent} from './pages/post/post.component';
+import {ManagePostsComponent} from './pages/manage-posts/manage-posts.component';
+import {CreatePostComponent} from './pages/create-post/create-post.component';
+
+export const routes: Routes = [
+  {
+    path: '',
+    component: AppLayoutComponent,
+    children: [
+      {
+        path: '',
+        component: FeedComponent,
+      },
+      {
+        path: 'profile',
+        component: ProfileComponent,
+      },
+      {
+        path: 'post',
+        component: PostComponent,
+      },
+      {
+        path: 'posts/create',
+        component: CreatePostComponent,
+      },
+      {
+        path: 'posts/manage',
+        component: ManagePostsComponent,
+      },
+    ]
+  },
+  {
+    path: '',
+    component: AuthLayoutComponent,
+    children: [
+      {
+        path: 'login',
+        component: LoginComponent,
+      },
+      {
+        path: 'register',
+        component: RegisterComponent,
+      }
+    ]
+  },
+];

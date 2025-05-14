@@ -1,14 +1,12 @@
 <?php
 
-declare(strict_types=1);
-
-namespace App\Http\Requests;
+namespace App\Http\Requests\Posts;
 
 use App\Models\Category;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class StorePostRequest extends FormRequest
+class UpdatePostRequest extends FormRequest
 {
     public function rules(): array
     {

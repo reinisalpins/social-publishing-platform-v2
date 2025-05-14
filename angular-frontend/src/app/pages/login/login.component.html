@@ -1,0 +1,9 @@
+<h2 class="text-xl font-semibold">Log in to your account</h2>
+
+<form class="flex flex-col gap-6 min-w-sm mt-6" action="#" method="POST">
+  <app-input label="Email address" type="email" id="email" name="email" [required]="true"/>
+  <app-input label="Password" type="password" id="password" name="password" [required]="true"/>
+
+  <app-button type="submit" buttonClass="button-primary w-full">Log in</app-button>
+  <a class="text-sm text-gray-500 hover:underline" routerLink="/register">Create an account</a>
+</form>

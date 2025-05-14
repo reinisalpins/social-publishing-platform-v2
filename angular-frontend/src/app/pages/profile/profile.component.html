@@ -1,0 +1,31 @@
+<section class="container mx-auto px-4 py-6">
+  <div class="max-w-xl flex flex-col gap-4">
+    <div>
+      <h1 class="text-xl font-semibold">Profile information</h1>
+      <h2 class="text-gray-600 text-sm">Update your name and email address</h2>
+    </div>
+
+    <form class="flex flex-col gap-4">
+      <app-input label="Name" name="name" placeholder="Name"/>
+      <app-input label="Email address" name="email" placeholder="Email address"/>
+      <app-button type="submit" buttonClass="button-primary text-sm">Save changes</app-button>
+    </form>
+  </div>
+
+  <hr class="border-gray-200 border-t my-6"/>
+
+  <div class="max-w-xl flex flex-col gap-4">
+    <div>
+      <h1 class="text-xl font-semibold">Update password</h1>
+      <h2 class="text-gray-600 text-sm">Update your password</h2>
+    </div>
+
+    <form class="flex flex-col gap-4">
+      <app-input type="password" label="Current password" name="current_password" placeholder="Current password"/>
+      <app-input type="password" label="New password" name="new_password" placeholder="New password"/>
+      <app-input type="password" label="Confirm password" name="confirm_password" placeholder="Confirm password"/>
+      <app-button type="submit" buttonClass="button-primary text-sm">Save password</app-button>
+    </form>
+  </div>
+
+</section>

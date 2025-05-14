@@ -1,0 +1,12 @@
+<h2 class="text-xl font-semibold">Create an account</h2>
+
+<form class="flex flex-col gap-6 min-w-sm mt-6" action="#" method="POST">
+  <app-input label="Name" type="text" id="name" name="name" [required]="true"/>
+  <app-input label="Email address" type="email" id="email" name="email" [required]="true"/>
+  <app-input label="Password" type="password" id="password" name="password" [required]="true"/>
+  <app-input label="Password confirmation" type="password" id="password_confirmation" name="password_confirmation"
+             [required]="true"/>
+
+  <app-button type="submit" buttonClass="button-primary w-full">Register</app-button>
+  <a class="text-sm text-gray-500 hover:underline" routerLink="/login">Log in to your account</a>
+</form>
