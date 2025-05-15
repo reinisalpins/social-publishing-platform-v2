@@ -4,6 +4,6 @@
   <app-input label="Email address" type="email" id="email" name="email" [required]="true"/>
   <app-input label="Password" type="password" id="password" name="password" [required]="true"/>
 
-  <app-button type="submit" buttonClass="button-primary w-full">Log in</app-button>
+  <app-button type="submit" buttonClass="button-primary w-full" (click)="login()">Log in</app-button>
   <a class="text-sm text-gray-500 hover:underline" routerLink="/register">Create an account</a>
 </form>

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {PostFormComponent} from '../../components/post-form/post-form.component';
+import {PostFormComponent} from '../../components/posts/post-form/post-form.component';
 
 @Component({
   selector: 'app-create-post',

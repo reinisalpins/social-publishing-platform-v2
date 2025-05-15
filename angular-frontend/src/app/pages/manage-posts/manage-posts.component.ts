@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {ManagePostCardComponent} from '../../components/manage-post-card/manage-post-card.component';
+import {ManagePostCardComponent} from '../../components/posts/manage-post-card/manage-post-card.component';
 import {RouterLink} from '@angular/router';
 
 @Component({

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {CommentCardComponent} from '../../components/comment-card/comment-card.component';
+import {CommentCardComponent} from '../../components/posts/comment-card/comment-card.component';
 
 @Component({
   selector: 'app-post',

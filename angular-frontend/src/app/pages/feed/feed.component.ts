@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {SearchBoxComponent} from '../../components/search-box/search-box.component';
-import {PostCardComponent} from '../../components/post-card/post-card.component';
+import {PostCardComponent} from '../../components/posts/post-card/post-card.component';
 
 @Component({
   selector: 'app-feed',

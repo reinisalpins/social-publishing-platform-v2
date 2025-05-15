@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import {ButtonComponent} from '../button/button.component';
-import {InputComponent} from '../input/input.component';
-import {TextareaComponent} from '../textarea/textarea.component';
-import {MultipleSelectComponent} from '../multiple-select/multiple-select.component';
+import {ButtonComponent} from '../../button/button.component';
+import {InputComponent} from '../../input/input.component';
+import {TextareaComponent} from '../../textarea/textarea.component';
+import {MultipleSelectComponent} from '../../multiple-select/multiple-select.component';
 
 @Component({
   selector: 'app-post-form',
