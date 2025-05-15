@@ -8,6 +8,7 @@ use App\Http\Requests\Posts\StorePostRequest;
 use App\Http\Requests\Posts\UpdatePostRequest;
 use App\Http\Resources\Posts\PostResource;
 use App\Models\Post;
+use Illuminate\Http\Request;
 
 class PostController
 {
@@ -19,7 +20,7 @@ class PostController
             'user_id' => $request->user()->id,
         ]);
 
-        $post->categories()->attach($request->get('categories'));
+        $post->categories()->attach($request->input('categories'));
 
         return PostResource::make($post);
     }
@@ -31,8 +32,13 @@ class PostController
             'content' => $request->input('content'),
         ]);
 
-        $post->categories()->sync($request->get('categories'));
+        $post->categories()->sync($request->input('categories'));
 
+        return PostResource::make($post);
+    }
+
+    public function show(Request $request, Post $post): PostResource
+    {
         return PostResource::make($post);
     }
 }

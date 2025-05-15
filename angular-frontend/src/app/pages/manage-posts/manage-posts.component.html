@@ -5,9 +5,14 @@
     <a routerLink="/posts/create" class="button-primary text-sm">Create post</a>
   </div>
   <div class="flex flex-col gap-6 mt-10">
-    <app-manage-post-card/>
-    <app-manage-post-card/>
-    <app-manage-post-card/>
-    <app-manage-post-card/>
+    @if (isLoading()) {
+      <app-loader/>
+    } @else {
+      @for (post of posts(); track post.id) {
+        <app-manage-post-card [post]="post"/>
+      } @empty {
+        <p>No posts found</p>
+      }
+    }
   </div>
 </section>

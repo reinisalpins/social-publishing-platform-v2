@@ -28,7 +28,7 @@ export class ProfileInformationFormComponent implements OnInit {
   readonly errors = signal<{ [key: string]: string }>({});
 
   ngOnInit() {
-    this.profileInformationForm.patchValue({
+    this.profileInformationForm.setValue({
       name: this.userService.user()!.name,
       email: this.userService.user()!.email
     })

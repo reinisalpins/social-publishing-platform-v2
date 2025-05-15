@@ -35,9 +35,9 @@
   @if (isMenuOpen()) {
     <div class="md:hidden container mx-auto px-4 pb-4">
       <nav class="flex flex-col space-y-3">
-        <a class="ml-4 hover:underline underline-offset-4 text-sm" routerLink="/">Feed</a>
+        <a class="hover:underline underline-offset-4 text-sm" routerLink="/">Feed</a>
         @for (category of categoryService.categories(); track category.id) {
-          <a class="ml-4 hover:underline underline-offset-4 text-sm">{{ category.name }}</a>
+          <a class="hover:underline underline-offset-4 text-sm">{{ category.name }}</a>
         }
       </nav>
       <div class="flex flex-col gap-4 mt-6">

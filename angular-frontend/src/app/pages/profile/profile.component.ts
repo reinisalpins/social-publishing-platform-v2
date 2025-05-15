@@ -1,6 +1,4 @@
-import { Component } from '@angular/core';
-import {InputComponent} from '../../components/input/input.component';
-import {ButtonComponent} from '../../components/button/button.component';
+import {Component} from '@angular/core';
 import {
   ProfileInformationFormComponent
 } from '../../components/user/profile-information-form/profile-information-form.component';
@@ -9,8 +7,6 @@ import {UpdatePasswordFormComponent} from '../../components/user/update-password
 @Component({
   selector: 'app-profile',
   imports: [
-    InputComponent,
-    ButtonComponent,
     ProfileInformationFormComponent,
     UpdatePasswordFormComponent
   ],

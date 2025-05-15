@@ -8,14 +8,19 @@
       [name]="name()"
       [required]="required()"
       [disabled]="disabled()"
-      [value]="value()"
-      (input)="onInputChange($event)"
+      (change)="onInputChange($event)"
       (blur)="onTouched()"
       class="input text-sm p-0! overflow-y-auto"
       multiple
     >
       @for (option of options(); track option.value) {
-        <option class="p-2" value="{{ option.value }}">{{ option.label }}</option>
+        <option
+          class="p-2"
+          [value]="option.value"
+          [selected]="value().includes(option.value)"
+        >
+          {{ option.label }}
+        </option>
       }
     </select>
     @if (errorMessage()) {

@@ -1,1 +1,14 @@
-<p>update-post works!</p>
+<section class="container mx-auto px-4 py-6">
+  @if (isLoading()) {
+    <app-loader/>
+  } @else if (!post()) {
+    <p>Post not found</p>
+  } @else if (post()!.userId !== userService.user()!.id) {
+    <p>Forbidden</p>
+  } @else {
+    <h1 class="text-xl font-semibold">Update post</h1>
+    <div class="mt-6">
+      <app-post-form [existingPost]="post()"/>
+    </div>
+  }
+</section>

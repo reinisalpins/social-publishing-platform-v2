@@ -11,6 +11,7 @@ import {CreatePostComponent} from './pages/create-post/create-post.component';
 import {authGuard} from './guards/auth.guard';
 import {guestGuard} from './guards/guest.guard';
 import {CategoryResolverService} from './services/category-resolver.service';
+import {UpdatePostComponent} from './pages/update-post/update-post.component';
 
 export const routes: Routes = [
   {
@@ -22,8 +23,9 @@ export const routes: Routes = [
       {path: '', component: FeedComponent},
       {path: 'profile', component: ProfileComponent},
       {path: 'post', component: PostComponent},
-      {path: 'posts/create', component: CreatePostComponent},
       {path: 'posts/manage', component: ManagePostsComponent},
+      {path: 'posts/create', component: CreatePostComponent},
+      {path: 'posts/:id/edit', component: UpdatePostComponent},
     ]
   },
   {
