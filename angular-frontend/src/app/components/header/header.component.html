@@ -4,8 +4,9 @@
     <span class="font-semibold">Social publishing platform</span>
 
     <nav class="hidden md:block">
-      @for (navItem of navItems; track navItem.name) {
-        <a class="ml-4 hover:underline underline-offset-4 text-sm" [routerLink]="navItem.href">{{ navItem.name }}</a>
+      <a class="ml-4 hover:underline underline-offset-4 text-sm" routerLink="/">Feed</a>
+      @for (category of categoryService.categories(); track category.id) {
+        <a class="ml-4 hover:underline underline-offset-4 text-sm">{{ category.name }}</a>
       }
     </nav>
 
@@ -34,8 +35,9 @@
   @if (isMenuOpen()) {
     <div class="md:hidden container mx-auto px-4 pb-4">
       <nav class="flex flex-col space-y-3">
-        @for (navItem of navItems; track navItem.name) {
-          <a class="text-sm hover:underline underline-offset-4" [routerLink]="navItem.href">{{ navItem.name }}</a>
+        <a class="ml-4 hover:underline underline-offset-4 text-sm" routerLink="/">Feed</a>
+        @for (category of categoryService.categories(); track category.id) {
+          <a class="ml-4 hover:underline underline-offset-4 text-sm">{{ category.name }}</a>
         }
       </nav>
       <div class="flex flex-col gap-4 mt-6">

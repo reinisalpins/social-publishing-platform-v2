@@ -1,6 +1,7 @@
-import {Component, signal} from '@angular/core';
+import {Component, inject, signal} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {RouterLink} from '@angular/router';
+import {CategoryService} from '../../services/category.service';
 
 interface NavItem {
   name: string;
@@ -14,11 +15,7 @@ interface NavItem {
   styleUrl: './header.component.css'
 })
 export class HeaderComponent {
-  protected navItems: NavItem[] = [
-    {name: 'Feed', href: '/'},
-    {name: 'Sports', href: '#'},
-    {name: 'Politics', href: '#'},
-  ];
+  readonly categoryService = inject(CategoryService);
 
   protected isMenuOpen = signal(false);
 }

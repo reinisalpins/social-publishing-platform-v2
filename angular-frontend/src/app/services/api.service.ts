@@ -27,8 +27,8 @@ export class ApiService {
     });
   }
 
-  put<T>(endpoint: string, data: any, options?: ApiOptions): Observable<T> {
-    return this.http.put<T>(`${this.baseUrl}${endpoint}`, data, {
+  patch<T>(endpoint: string, data: any, options?: ApiOptions): Observable<T> {
+    return this.http.patch<T>(`${this.baseUrl}${endpoint}`, data, {
       withCredentials: true,
       ...options
     });

@@ -8,46 +8,31 @@ import {ProfileComponent} from './pages/profile/profile.component';
 import {PostComponent} from './pages/post/post.component';
 import {ManagePostsComponent} from './pages/manage-posts/manage-posts.component';
 import {CreatePostComponent} from './pages/create-post/create-post.component';
+import {authGuard} from './guards/auth.guard';
+import {guestGuard} from './guards/guest.guard';
+import {CategoryResolverService} from './services/category-resolver.service';
 
 export const routes: Routes = [
   {
     path: '',
     component: AppLayoutComponent,
+    canActivateChild: [authGuard],
+    resolve: {categories: CategoryResolverService},
     children: [
-      {
-        path: '',
-        component: FeedComponent,
-      },
-      {
-        path: 'profile',
-        component: ProfileComponent,
-      },
-      {
-        path: 'post',
-        component: PostComponent,
-      },
-      {
-        path: 'posts/create',
-        component: CreatePostComponent,
-      },
-      {
-        path: 'posts/manage',
-        component: ManagePostsComponent,
-      },
+      {path: '', component: FeedComponent},
+      {path: 'profile', component: ProfileComponent},
+      {path: 'post', component: PostComponent},
+      {path: 'posts/create', component: CreatePostComponent},
+      {path: 'posts/manage', component: ManagePostsComponent},
     ]
   },
   {
     path: '',
     component: AuthLayoutComponent,
+    canActivateChild: [guestGuard],
     children: [
-      {
-        path: 'login',
-        component: LoginComponent,
-      },
-      {
-        path: 'register',
-        component: RegisterComponent,
-      }
+      {path: 'login', component: LoginComponent},
+      {path: 'register', component: RegisterComponent}
     ]
-  },
+  }
 ];

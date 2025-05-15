@@ -1,0 +1,5 @@
+<form class="flex flex-col gap-4" [formGroup]="profileInformationForm" (ngSubmit)="save()">
+  <app-input [errorMessage]="getError('name')" formControlName="name" label="Name" name="name" placeholder="Name"/>
+  <app-input [errorMessage]="getError('email')" formControlName="email" label="Email address" name="email" placeholder="Email address"/>
+  <app-button [loading]="isLoading()" type="submit" buttonClass="button-primary text-sm">Save changes</app-button>
+</form>

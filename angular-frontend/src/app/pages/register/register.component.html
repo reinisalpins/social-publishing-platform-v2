@@ -1,12 +1,13 @@
 <h2 class="text-xl font-semibold">Create an account</h2>
 
-<form class="flex flex-col gap-6 min-w-sm mt-6" action="#" method="POST">
-  <app-input label="Name" type="text" id="name" name="name" [required]="true"/>
-  <app-input label="Email address" type="email" id="email" name="email" [required]="true"/>
-  <app-input label="Password" type="password" id="password" name="password" [required]="true"/>
-  <app-input label="Password confirmation" type="password" id="password_confirmation" name="password_confirmation"
-             [required]="true"/>
+<form class="flex flex-col gap-6 min-w-sm mt-6" [formGroup]="registerForm" (ngSubmit)="register()">
+  <app-input formControlName="name" [errorMessage]="getError('name')" label="Name" type="text" id="name" name="name"/>
+  <app-input formControlName="email" [errorMessage]="getError('email')" label="Email address" type="email" id="email" name="email"/>
+  <app-input formControlName="password" [errorMessage]="getError('password')" label="Password" type="password" id="password" name="password"/>
+  <app-input formControlName="password_confirmation" [errorMessage]="getError('password_confirmation')" label="Password confirmation" type="password"
+             id="password_confirmation" name="password_confirmation"
+  />
 
-  <app-button type="submit" buttonClass="button-primary w-full">Register</app-button>
+  <app-button [loading]="isLoading()" type="submit" buttonClass="button-primary w-full">Register</app-button>
   <a class="text-sm text-gray-500 hover:underline" routerLink="/login">Log in to your account</a>
 </form>

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Resources;
+namespace App\Http\Resources\Posts;
 
 use App\Models\Post;
 use Illuminate\Http\Request;
