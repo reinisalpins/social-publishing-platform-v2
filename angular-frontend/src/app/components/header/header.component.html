@@ -6,13 +6,14 @@
     <nav class="hidden md:block">
       <a class="ml-4 hover:underline underline-offset-4 text-sm" routerLink="/">Feed</a>
       @for (category of categoryService.categories(); track category.id) {
-        <a class="ml-4 hover:underline underline-offset-4 text-sm">{{ category.name }}</a>
+        <a class="ml-4 hover:underline underline-offset-4 text-sm" [routerLink]="['/categories', category.slug]">{{ category.name }}</a>
       }
     </nav>
 
     <div class="hidden md:flex gap-2">
       <a class="button-primary text-sm" routerLink="/profile">Profile</a>
       <a class="button-primary text-sm" routerLink="/posts/manage">Manage posts</a>
+      <app-button class="button-primary text-sm" [loading]="isLoggingOut()" (click)="logout()">Logout</app-button>
     </div>
 
     <button (click)="isMenuOpen.set(!isMenuOpen())" class="md:hidden text-gray-700">
@@ -46,6 +47,9 @@
         </div>
         <div>
           <a class="button-primary text-center text-sm" routerLink="/posts/manage">Manage posts</a>
+        </div>
+        <div>
+          <app-button class="button-primary text-sm" [loading]="isLoggingOut()" (click)="logout()">Logout</app-button>
         </div>
       </div>
     </div>

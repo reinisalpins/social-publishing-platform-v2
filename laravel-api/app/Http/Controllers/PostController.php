@@ -7,8 +7,9 @@ namespace App\Http\Controllers;
 use App\Http\Requests\Posts\StorePostRequest;
 use App\Http\Requests\Posts\UpdatePostRequest;
 use App\Http\Resources\Posts\PostResource;
+use App\Http\Resources\Posts\PostResourceCollection;
 use App\Models\Post;
-use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class PostController
 {
@@ -37,8 +38,22 @@ class PostController
         return PostResource::make($post);
     }
 
-    public function show(Request $request, Post $post): PostResource
+    public function show(Post $post): PostResource
     {
-        return PostResource::make($post);
+        return PostResource::make(
+            $post->load(['categories', 'comments', 'comments.user', 'user'])->loadCount('comments')
+        );
+    }
+
+    public function destroy(Post $post): Response
+    {
+        $post->delete();
+
+        return response(status: Response::HTTP_NO_CONTENT);
+    }
+
+    public function index(): PostResourceCollection
+    {
+        return PostResourceCollection::make(Post::with(['categories', 'user'])->withCount('comments')->get());
     }
 }

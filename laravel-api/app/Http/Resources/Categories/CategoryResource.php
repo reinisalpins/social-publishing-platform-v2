@@ -10,7 +10,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class CategoryResource extends JsonResource
 {
-    /** @var $resource Category */
+    /** @var Category */
     public $resource;
 
     public function toArray(Request $request): array

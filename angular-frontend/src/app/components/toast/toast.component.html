@@ -1,0 +1,11 @@
+@if (service.isVisible()) {
+  <div
+    class="bg-white border border-gray-200 shadow transition-all p-4 rounded-lg text-sm fixed bottom-10 right-10"
+    [ngClass]="{
+    'shadow-green-500': service.variant() === Variant.SUCCESS,
+    'shadow-red-500': service.variant() === Variant.ERROR
+  }">
+    <h1 class="font-semibold">{{ service.variant() === Variant.SUCCESS ? 'Success' : 'Error' }}!</h1>
+    <p class="text-sm mt-1">{{ service.message() }}</p>
+  </div>
+}

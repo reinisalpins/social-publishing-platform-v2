@@ -20,7 +20,7 @@ export class ApiService {
     });
   }
 
-  post<T>(endpoint: string, data: any, options?: ApiOptions): Observable<T> {
+  post<T>(endpoint: string, data: any = {}, options?: ApiOptions): Observable<T> {
     return this.http.post<T>(`${this.baseUrl}${endpoint}`, data, {
       withCredentials: true,
       ...options

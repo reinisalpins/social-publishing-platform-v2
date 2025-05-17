@@ -1,7 +1,8 @@
 import {computed, inject, Injectable} from '@angular/core';
 import {ApiService} from './api.service';
-import {switchMap} from 'rxjs';
+import {switchMap, tap} from 'rxjs';
 import {UserService} from './user.service';
+import {Router} from '@angular/router';
 
 interface LoginCredentials {
   email: string;
@@ -22,6 +23,7 @@ export class AuthService {
   readonly apiService = inject(ApiService);
   readonly userService = inject(UserService);
   readonly isLoggedIn = computed(() => this.userService.user() !== null);
+  readonly router = inject(Router);
 
   login(credentials: LoginCredentials) {
     return this.apiService.get<void>('/sanctum/csrf-cookie').pipe(
@@ -33,5 +35,14 @@ export class AuthService {
     return this.apiService.get<void>('/sanctum/csrf-cookie').pipe(
       switchMap(() => this.apiService.post<void>('/api/register', credentials))
     )
+  }
+
+  logout() {
+    return this.apiService.post<void>('/api/logout').pipe(
+      tap(() => {
+        this.userService.clearUser();
+        this.router.navigate(['/login']);
+      })
+    );
   }
 }

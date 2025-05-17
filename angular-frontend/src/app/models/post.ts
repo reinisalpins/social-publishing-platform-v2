@@ -9,10 +9,15 @@ export interface Post {
   comments?: PostComment[];
   commentsCount?: number;
   categories?: Category[];
+  createdAt: string;
+  user?: User;
 }
 
 export interface PostComment {
   id: number;
   content: string;
+  userId: number;
+  postId: number;
   user: User;
+  createdAt: string;
 }

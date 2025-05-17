@@ -4,6 +4,7 @@ import {InputComponent} from '../../input/input.component';
 import {FormBuilder, FormGroup, ReactiveFormsModule} from '@angular/forms';
 import {UserService} from '../../../services/user.service';
 import {catchError, finalize, tap, throwError} from 'rxjs';
+import {ToastService} from '../../../services/toast.service';
 
 @Component({
   selector: 'app-update-password-form',
@@ -18,6 +19,7 @@ import {catchError, finalize, tap, throwError} from 'rxjs';
 export class UpdatePasswordFormComponent {
   readonly fb = inject(FormBuilder);
   readonly userService = inject(UserService);
+  readonly toastService = inject(ToastService);
 
   protected updatePasswordForm: FormGroup = this.fb.group({
     current_password: [''],
@@ -35,6 +37,7 @@ export class UpdatePasswordFormComponent {
       tap(() => {
         this.errors.set({});
         this.updatePasswordForm.reset();
+        this.toastService.showToast('Password updated successfully')
       }),
       catchError((error) => {
         if (error.status === 422 && error.error?.errors) {

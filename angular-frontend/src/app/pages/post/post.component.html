@@ -1,23 +1,40 @@
 <section>
   <div class="container mx-auto px-4 py-6 flex flex-col gap-6">
-    <h1 class="font-semibold text-xl">Velit aut fuga ipsam quas repellendus quia.</h1>
-
-    <p>
-      Et quos deleniti cum vero doloremque nisi explicabo. Cupiditate nam aut unde tenetur. Praesentium voluptatibus et
-      magni autem optio corrupti. Minus fuga tempora et. Nihil laudantium consequatur voluptatem sed voluptatem.
-      Aspernatur itaque laborum libero necessitatibus incidunt esse et beatae. Suscipit dicta repellat cupiditate est.
-      Dolores libero iusto voluptatibus sit omnis aut. Neque a et dicta facere et architecto quasi. Deserunt voluptates
-      dolores dignissimos unde. Ducimus aperiam aspernatur praesentium ex fuga nesciunt. Totam quas architecto magni aut
-      iste soluta delectus. Odit repudiandae aliquid exercitationem quis eos eveniet sit est.
-    </p>
-
-    <div class="pt-6">
-      <h2 class="font-semibold">Comments (1):</h2>
-      <div class="flex flex-col gap-4 mt-4">
-        <app-comment-card/>
-        <app-comment-card/>
-        <app-comment-card/>
+    @if (isLoading()) {
+      <div class="flex w-full justify-center">
+        <app-loader/>
       </div>
-    </div>
+    }
+
+    @let currentPost = post();
+
+    @if (currentPost) {
+      <div class="flex gap-2 flex-wrap items-center">
+        @for (category of currentPost.categories; track category.id) {
+          <a class="px-2 py-1 text-xs font-medium rounded-full bg-primary text-white"
+             [routerLink]="['/categories', category.slug]">{{ category.name }}</a>
+        }
+      </div>
+
+      <a href="#" class="hover:text-black text-gray-500 text-sm">{{ currentPost.user!.name }}</a>
+
+      <h1 class="font-semibold text-xl">{{ currentPost.title }}</h1>
+
+      <p>
+        {{ currentPost.content }}
+      </p>
+
+      <div class="pt-6">
+        <h2 class="font-semibold">Comments ({{ currentPost.commentsCount }})</h2>
+        <div class="mt-4">
+          <app-create-comment (commentCreated)="onCommentCreated()" [postId]="currentPost.id"/>
+        </div>
+        <div class="flex flex-col gap-4 mt-4">
+          @for (comment of currentPost.comments; track comment.id) {
+            <app-comment-card [comment]="comment" (commentDeleted)="onCommentDeleted()"/>
+          }
+        </div>
+      </div>
+    }
   </div>
 </section>

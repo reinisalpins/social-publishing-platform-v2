@@ -4,6 +4,7 @@ import {InputComponent} from "../../input/input.component";
 import {FormBuilder, FormGroup, ReactiveFormsModule} from '@angular/forms';
 import {UserService} from '../../../services/user.service';
 import {catchError, finalize, tap, throwError} from 'rxjs';
+import {ToastService} from '../../../services/toast.service';
 
 @Component({
   selector: 'app-profile-information-form',
@@ -18,6 +19,7 @@ import {catchError, finalize, tap, throwError} from 'rxjs';
 export class ProfileInformationFormComponent implements OnInit {
   readonly fb = inject(FormBuilder);
   readonly userService = inject(UserService);
+  readonly toastService = inject(ToastService);
 
   protected profileInformationForm: FormGroup = this.fb.group({
     name: [''],
@@ -40,6 +42,7 @@ export class ProfileInformationFormComponent implements OnInit {
     this.userService.updateUser(this.profileInformationForm.value).pipe(
       tap(() => {
         this.errors.set({});
+        this.toastService.showToast('Profile information updated successfully')
       }),
       catchError((error) => {
         if (error.status === 422 && error.error?.errors) {

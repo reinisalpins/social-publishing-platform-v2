@@ -12,16 +12,13 @@ class UpdateUserRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => [
-                'required',
-                'string'
-            ],
+            'name' => ['required', 'string'],
             'email' => [
                 'required',
                 'string',
                 'email',
-                Rule::unique('users')->ignore($this->user()->id)
-            ]
+                Rule::unique('users')->ignore($this->user()->id),
+            ],
         ];
     }
 }

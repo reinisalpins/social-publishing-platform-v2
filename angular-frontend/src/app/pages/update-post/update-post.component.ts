@@ -1,8 +1,7 @@
 import {Component, inject, OnInit, signal} from '@angular/core';
 import {PostFormComponent} from '../../components/posts/post-form/post-form.component';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {PostService} from '../../services/post.service';
-import {UserService} from '../../services/user.service';
 import {Post} from '../../models/post';
 import {catchError, finalize, tap, throwError} from 'rxjs';
 import {LoaderComponent} from '../../components/loader/loader.component';
@@ -18,8 +17,8 @@ import {LoaderComponent} from '../../components/loader/loader.component';
 })
 export class UpdatePostComponent implements OnInit {
   readonly postService = inject(PostService);
-  readonly userService = inject(UserService);
   private readonly route = inject(ActivatedRoute);
+  private readonly router = inject(Router);
 
   readonly isLoading = signal(false);
   readonly post = signal<Post | null>(null);
@@ -33,12 +32,20 @@ export class UpdatePostComponent implements OnInit {
   getPost(id: string) {
     this.isLoading.set(true);
 
-    this.postService.getPostById(id).pipe(
+    this.postService.getAuthUserPostById(id).pipe(
       tap((post) => this.post.set(post)),
-      catchError((error) => {
-        return throwError(() => error);
-      }),
       finalize(() => this.isLoading.set(false)),
+      catchError((error) => {
+        if (error.status === 404) {
+          this.router.navigate(['/not-found']);
+        }
+
+        if (error.status === 403) {
+          this.router.navigate(['/unauthorized']);
+        }
+
+        return throwError(() => error)
+      })
     ).subscribe()
   }
 }

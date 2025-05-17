@@ -5,11 +5,11 @@ import {TextareaComponent} from '../../textarea/textarea.component';
 import {MultipleSelectComponent} from '../../multiple-select/multiple-select.component';
 import {CategoryService} from '../../../services/category.service';
 import {FormBuilder, FormGroup, ReactiveFormsModule} from '@angular/forms';
-import {JsonPipe} from '@angular/common';
 import {PostService} from '../../../services/post.service';
 import {catchError, finalize, tap, throwError} from 'rxjs';
 import {Router} from '@angular/router';
 import {Post} from '../../../models/post';
+import {ToastService} from '../../../services/toast.service';
 
 @Component({
   selector: 'app-post-form',
@@ -18,8 +18,7 @@ import {Post} from '../../../models/post';
     InputComponent,
     TextareaComponent,
     MultipleSelectComponent,
-    ReactiveFormsModule,
-    JsonPipe
+    ReactiveFormsModule
   ],
   templateUrl: './post-form.component.html',
   styleUrl: './post-form.component.css'
@@ -29,6 +28,7 @@ export class PostFormComponent implements OnInit {
   readonly postService = inject(PostService);
   readonly fb = inject(FormBuilder);
   readonly router = inject(Router);
+  readonly toastService = inject(ToastService);
 
   readonly isLoading = signal(false);
   readonly errors = signal<{ [key: string]: string }>({});
@@ -70,6 +70,7 @@ export class PostFormComponent implements OnInit {
 
     request.pipe(
       tap(() => {
+        this.toastService.showToast('Post saved successfully');
         this.router.navigate(['/posts/manage']);
       }),
       catchError((error) => {

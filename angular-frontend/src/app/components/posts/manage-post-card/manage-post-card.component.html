@@ -1,9 +1,12 @@
 <div class="border-l-2 border-l-gray-400 pl-4 flex flex-col gap-4 font-semibold">
-  <a class="hover:underline underline-offset-4" href="#">
+  <a class="hover:underline underline-offset-4" [routerLink]="['/posts', post().id]">
     {{ post().title }}
   </a>
   <div class="flex gap-2">
     <a [routerLink]="['/posts', post().id, 'edit']" class="button-primary text-xs cursor-pointer">Edit</a>
-    <app-button buttonClass="button-primary text-xs bg-red-500! hover:bg-red-400! cursor-pointer">Delete</app-button>
+    <app-button [loading]="isLoading()" (click)="deletePost(post().id)"
+                buttonClass="button-primary text-xs bg-red-500! hover:bg-red-400! cursor-pointer">
+      Delete
+    </app-button>
   </div>
 </div>

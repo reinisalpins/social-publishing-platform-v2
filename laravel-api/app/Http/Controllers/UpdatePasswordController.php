@@ -14,7 +14,7 @@ class UpdatePasswordController
         $user = $request->user();
 
         $user->update([
-            'password' => $request->input('new_password')
+            'password' => $request->input('new_password'),
         ]);
 
         return response(status: Response::HTTP_NO_CONTENT);

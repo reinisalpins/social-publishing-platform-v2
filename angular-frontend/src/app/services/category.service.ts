@@ -18,4 +18,10 @@ export class CategoryService {
       tap(categories => this.categories.set(categories))
     );
   }
+
+  getCategoryBySlug(slug: string) {
+    return this.apiService.get<ApiResponse<Category>>(`/api/categories/${slug}`).pipe(
+      map(response => response.data),
+    );
+  }
 }

@@ -1,0 +1,20 @@
+<section>
+  <div class="container mx-auto px-4 py-6">
+    @if (isLoading()) {
+      <div class="flex w-full justify-center">
+        <app-loader/>
+      </div>
+    } @else {
+      @if (category()) {
+        <h1 class="font-semibold text-lg mb-4">Showing posts for: {{ category()!.name }}</h1>
+      }
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        @for (post of posts(); track post.id) {
+          <app-post-card [post]="post"/>
+        } @empty {
+          <p>No posts found</p>
+        }
+      </div>
+    }
+  </div>
+</section>

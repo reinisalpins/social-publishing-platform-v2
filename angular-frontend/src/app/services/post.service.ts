@@ -36,7 +36,33 @@ export class PostService {
     );
   }
 
+  getAuthUserPostById(id: number | string) {
+    return this.apiService.get<ApiResponse<Post>>(`/api/user/posts/${id}`).pipe(
+      map(response => response.data),
+    );
+  }
+
   deletePost(id: number | string) {
     return this.apiService.delete<void>(`/api/posts/${id}`);
+  }
+
+  getAllPosts() {
+    return this.apiService.get<ApiResponse<Post[]>>('/api/posts').pipe(
+      map(response => response.data),
+    );
+  }
+
+  createComment(postId: number, content: string) {
+    return this.apiService.post<void>(`/api/posts/${postId}/comments`, {content});
+  }
+
+  deleteComment(commentId: number) {
+    return this.apiService.delete<void>(`/api/comments/${commentId}`);
+  }
+
+  getPostsByCategory(categoryId: number) {
+    return this.apiService.get<ApiResponse<Post[]>>(`/api/categories/${categoryId}/posts`).pipe(
+      map(response => response.data),
+    );
   }
 }

@@ -14,5 +14,4 @@ import {UpdatePasswordFormComponent} from '../../components/user/update-password
   styleUrl: './profile.component.css'
 })
 export class ProfileComponent {
-
 }

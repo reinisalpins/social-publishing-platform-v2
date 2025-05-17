@@ -3,7 +3,7 @@ import {ManagePostCardComponent} from '../../components/posts/manage-post-card/m
 import {RouterLink} from '@angular/router';
 import {PostService} from '../../services/post.service';
 import {Post} from '../../models/post';
-import {catchError, finalize, switchMap, tap, throwError} from 'rxjs';
+import {finalize, tap} from 'rxjs';
 import {LoaderComponent} from '../../components/loader/loader.component';
 
 @Component({
@@ -26,8 +26,10 @@ export class ManagePostsComponent implements OnInit {
     this.getUserPosts();
   }
 
-  getUserPosts() {
-    this.isLoading.set(true);
+  getUserPosts(showLoader: boolean = true) {
+    if (showLoader) {
+      this.isLoading.set(true);
+    }
 
     this.postService.getAuthUserPosts().pipe(
       tap((posts) => this.posts.set(posts)),
@@ -35,13 +37,7 @@ export class ManagePostsComponent implements OnInit {
     ).subscribe();
   }
 
-  deletePost(postId: number) {
-    this.postService.deletePost(postId).pipe(
-      switchMap(() => this.postService.getAuthUserPosts()),
-      finalize(() => this.isLoading.set(false)),
-      catchError((error) => {
-        return throwError(() => error);
-      }),
-    ).subscribe();
+  onPostDeleted() {
+    this.getUserPosts(false);
   }
 }

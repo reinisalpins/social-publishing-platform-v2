@@ -12,6 +12,9 @@ import {authGuard} from './guards/auth.guard';
 import {guestGuard} from './guards/guest.guard';
 import {CategoryResolverService} from './services/category-resolver.service';
 import {UpdatePostComponent} from './pages/update-post/update-post.component';
+import {NotFoundComponent} from './pages/not-found/not-found.component';
+import {UnauthorizedComponent} from './pages/unauthorized/unauthorized.component';
+import {CategoryPostsComponent} from './pages/category-posts/category-posts.component';
 
 export const routes: Routes = [
   {
@@ -26,6 +29,10 @@ export const routes: Routes = [
       {path: 'posts/manage', component: ManagePostsComponent},
       {path: 'posts/create', component: CreatePostComponent},
       {path: 'posts/:id/edit', component: UpdatePostComponent},
+      {path: 'posts/:id', component: PostComponent},
+      {path: 'not-found', component: NotFoundComponent},
+      {path: 'unauthorized', component: UnauthorizedComponent},
+      {path: 'categories/:slug', component: CategoryPostsComponent},
     ]
   },
   {

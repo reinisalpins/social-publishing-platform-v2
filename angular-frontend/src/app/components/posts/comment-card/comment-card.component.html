@@ -1,21 +1,22 @@
 <div class="relative flex flex-col rounded-xl border border-gray-400">
   <div class="p-5">
     <div class="flex items-center gap-4 text-xs mb-3">
-      <span class="font-medium">Michelle Andrews</span>
+      <span class="font-medium">{{ comment().user.name }}</span>
       <span>|</span>
-      <span>Oct 22, 2024</span>
+      <span>{{ comment().createdAt | date }}</span>
     </div>
 
-    <p class="text-sm mb-3">
-      This is exactly what I was looking for! The explanation is clear and concise. I especially appreciate the insights
-      about the local attractions nearby. Thanks for sharing this valuable information.
+    <p class="text-sm">
+      {{ comment().content }}
     </p>
 
-    <button class="text-xs hover:text-red-500 hover:cursor-pointer" title="Delete comment">
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-              d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
-      </svg>
-    </button>
+    @if (comment().userId === userService.user()!.id) {
+      <app-button (click)="deleteComment(comment().id)" [loading]="isDeleting()" buttonClass="text-xs hover:text-red-500 hover:cursor-pointer mt-3" title="Delete comment">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+        </svg>
+      </app-button>
+    }
   </div>
 </div>

@@ -1,0 +1,4 @@
+<form class="max-w-xl" [formGroup]="commentForm" (ngSubmit)="createComment()">
+  <app-textarea formControlName="content" [errorMessage]="getError('content')" placeholder="Add a comment..."/>
+  <app-button type="submit" [loading]="isLoading()" buttonClass="button-primary text-sm mt-3">Create comment</app-button>
+</form>
