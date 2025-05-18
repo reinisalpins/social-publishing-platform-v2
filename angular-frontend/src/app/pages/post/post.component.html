@@ -12,11 +12,12 @@
       <div class="flex gap-2 flex-wrap items-center">
         @for (category of currentPost.categories; track category.id) {
           <a class="px-2 py-1 text-xs font-medium rounded-full bg-primary text-white"
-             [routerLink]="['/categories', category.slug]">{{ category.name }}</a>
+             [routerLink]="['/posts', 'categories', category.slug]">{{ category.name }}</a>
         }
       </div>
 
-      <a href="#" class="hover:text-black text-gray-500 text-sm">{{ currentPost.user!.name }}</a>
+      <a [routerLink]="['/posts', 'users', currentPost.user!.id]"
+         class="hover:text-black text-gray-500 text-sm">{{ currentPost.user!.name }}</a>
 
       <h1 class="font-semibold text-xl">{{ currentPost.title }}</h1>
 

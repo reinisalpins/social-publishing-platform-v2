@@ -65,4 +65,10 @@ export class PostService {
       map(response => response.data),
     );
   }
+
+  getPostsByUser(userId: number) {
+    return this.apiService.get<ApiResponse<Post[]>>(`/api/users/${userId}/posts`).pipe(
+      map(response => response.data),
+    );
+  }
 }

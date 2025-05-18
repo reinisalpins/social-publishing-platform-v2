@@ -12,6 +12,7 @@ class AuthenticatedUserController
 {
     public function show(Request $request): UserResource
     {
+        dd('t');
         return UserResource::make($request->user());
     }
 

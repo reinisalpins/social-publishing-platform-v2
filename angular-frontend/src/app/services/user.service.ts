@@ -43,4 +43,10 @@ export class UserService {
   clearUser() {
     this.user.set(null);
   }
+
+  getUserById(id: number | string) {
+    return this.apiService.get<ApiResponse<User>>(`/api/users/${id}`).pipe(
+      map(response => response.data),
+    );
+  }
 }

@@ -15,6 +15,7 @@ import {UpdatePostComponent} from './pages/update-post/update-post.component';
 import {NotFoundComponent} from './pages/not-found/not-found.component';
 import {UnauthorizedComponent} from './pages/unauthorized/unauthorized.component';
 import {CategoryPostsComponent} from './pages/category-posts/category-posts.component';
+import {UserPostsComponent} from './pages/user-posts/user-posts.component';
 
 export const routes: Routes = [
   {
@@ -32,7 +33,9 @@ export const routes: Routes = [
       {path: 'posts/:id', component: PostComponent},
       {path: 'not-found', component: NotFoundComponent},
       {path: 'unauthorized', component: UnauthorizedComponent},
-      {path: 'categories/:slug', component: CategoryPostsComponent},
+      {path: 'posts/categories/:slug', component: CategoryPostsComponent},
+      {path: 'posts/users/:id', component: UserPostsComponent},
+      {path: '**', redirectTo: 'not-found'}
     ]
   },
   {

@@ -1,6 +1,6 @@
 import {Component, inject, signal} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {RouterLink, RouterLinkActive} from '@angular/router';
+import {RouterLink} from '@angular/router';
 import {CategoryService} from '../../services/category.service';
 import {ButtonComponent} from '../button/button.component';
 import {AuthService} from '../../services/auth.service';
@@ -14,7 +14,7 @@ interface NavItem {
 
 @Component({
   selector: 'app-header',
-  imports: [CommonModule, RouterLink, ButtonComponent, RouterLinkActive],
+  imports: [CommonModule, RouterLink, ButtonComponent],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'
 })

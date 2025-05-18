@@ -1,8 +1,8 @@
-import {Component, inject, OnInit, signal} from '@angular/core';
+import {Component, inject, OnDestroy, OnInit, signal} from '@angular/core';
 import {CommentCardComponent} from '../../components/posts/comment-card/comment-card.component';
 import {PostService} from '../../services/post.service';
 import {ActivatedRoute, Router, RouterLink} from '@angular/router';
-import {catchError, finalize, tap, throwError} from 'rxjs';
+import {catchError, finalize, Subscription, tap, throwError} from 'rxjs';
 import {Post} from '../../models/post';
 import {ToastService, Variant} from '../../services/toast.service';
 import {LoaderComponent} from '../../components/loader/loader.component';
@@ -19,7 +19,7 @@ import {CreateCommentComponent} from '../../components/posts/create-comment/crea
   templateUrl: './post.component.html',
   styleUrl: './post.component.css'
 })
-export class PostComponent implements OnInit {
+export class PostComponent implements OnInit, OnDestroy {
   readonly postService = inject(PostService);
   readonly toastService = inject(ToastService);
   private readonly route = inject(ActivatedRoute);
@@ -28,13 +28,22 @@ export class PostComponent implements OnInit {
   readonly isLoading = signal(false);
   readonly post = signal<Post | null>(null);
 
-  readonly postId = this.route.snapshot.paramMap.get('id') || '';
+  private routeSubscription: Subscription | null = null;
 
   ngOnInit() {
-    this.getPost(this.postId);
+    this.routeSubscription = this.route.paramMap.subscribe(params => {
+      const id = params.get('id') || '';
+      this.getPost(id);
+    });
   }
 
-  getPost(id: string, showLoader: boolean = true) {
+  ngOnDestroy() {
+    if (this.routeSubscription) {
+      this.routeSubscription.unsubscribe();
+    }
+  }
+
+  getPost(id: string | number, showLoader: boolean = true) {
     if (showLoader) {
       this.isLoading.set(true);
     }
@@ -56,10 +65,12 @@ export class PostComponent implements OnInit {
   }
 
   onCommentDeleted() {
-    this.getPost(this.postId, false)
+    const postId = this.post()!.id;
+    this.getPost(postId, false)
   }
 
   onCommentCreated() {
-    this.getPost(this.postId, false)
+    const postId = this.post()!.id;
+    this.getPost(postId, false)
   }
 }

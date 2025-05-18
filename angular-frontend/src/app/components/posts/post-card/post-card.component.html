@@ -2,7 +2,8 @@
   <div class="p-5 flex flex-col h-full">
     <div class="mb-3 flex gap-2 flex-wrap items-center">
       @for (category of post().categories; track category.id) {
-        <a class="px-2 py-1 text-xs font-medium rounded-full bg-primary text-white" [routerLink]="['/categories', category.slug]">{{ category.name }}</a>
+        <a class="px-2 py-1 text-xs font-medium rounded-full bg-primary text-white"
+           [routerLink]="['/posts', 'categories', category.slug]">{{ category.name }}</a>
       }
     </div>
 
@@ -13,7 +14,7 @@
       {{ truncateContent(post().content) }}
     </p>
     <div class="flex items-center justify-between text-xs text-gray-500 mb-4">
-      <a href="#" class="hover:text-black">{{ post().user!.name }}</a>
+      <a [routerLink]="['/posts', 'users', post().user!.id]" class="hover:text-black">{{ post().user!.name }}</a>
       <div class="flex items-center gap-3">
         <span>{{ post().createdAt | date }}</span>
         <div class="flex items-center gap-1">
