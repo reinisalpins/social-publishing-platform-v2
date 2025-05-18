@@ -1,7 +1,7 @@
 <section class="container mx-auto px-4 py-6">
   <div class="max-w-lg mx-auto">
     <div class="flex gap-2 items-end">
-      <app-input [ngModel]="searchTerm()" (ngModelChange)="updateSearchTerm($event)" class="w-full" label="Search posts"
+      <app-input (keydown.enter)="search()" [ngModel]="searchTerm()" (ngModelChange)="updateSearchTerm($event)" class="w-full" label="Search posts"
                  [placeholder]="'Search posts...'"/>
       <app-button (click)="search()" buttonClass="button-primary h-fit mt-auto text-sm">Search</app-button>
     </div>

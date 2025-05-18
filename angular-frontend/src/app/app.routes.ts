@@ -33,10 +33,10 @@ export const routes: Routes = [
             {path: 'posts/search', component: SearchComponent},
             {path: 'posts/:id/edit', component: UpdatePostComponent},
             {path: 'posts/:id', component: PostComponent},
-            {path: 'not-found', component: NotFoundComponent},
-            {path: 'unauthorized', component: UnauthorizedComponent},
             {path: 'posts/categories/:slug', component: CategoryPostsComponent},
             {path: 'posts/users/:id', component: UserPostsComponent},
+            {path: 'unauthorized', component: UnauthorizedComponent},
+            {path: 'not-found', component: NotFoundComponent},
         ]
     },
     {
