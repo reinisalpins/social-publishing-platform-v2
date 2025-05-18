@@ -14,7 +14,7 @@ API built using Laravel 11, controllers structured using resource controller pat
 
 ```bash
 git clone https://github.com/reinisalpins/social-publishing-platform-v2.git
-cd social-publishing-platform
+cd social-publishing-platform-v2
 ```
 
 ### Backend Setup (Laravel)
