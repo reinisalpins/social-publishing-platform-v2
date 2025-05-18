@@ -35,7 +35,7 @@ cd social-publishing-platform-v2
    ```bash
    cp .env.example .env
    ```
-   
+
 4. **Create the SQLite database file:**
 
    ```bash
@@ -83,3 +83,12 @@ cd social-publishing-platform-v2
 ## Accessing the Application
 
 The Angular application will be running at `http://localhost:4200`.
+
+## Login
+
+To access the features, use the following credentials:
+
+   ```bash
+  Email: admin@example.com
+  Password: password
+   ```
