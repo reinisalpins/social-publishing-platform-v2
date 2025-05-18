@@ -15,36 +15,37 @@ import {UpdatePostComponent} from './pages/update-post/update-post.component';
 import {NotFoundComponent} from './pages/not-found/not-found.component';
 import {UnauthorizedComponent} from './pages/unauthorized/unauthorized.component';
 import {CategoryPostsComponent} from './pages/category-posts/category-posts.component';
-import {UserPostsComponent} from './pages/user-posts/user-posts.component';
+import {UserPostsComponent} from "./pages/user-posts/user-posts.component";
+import {SearchComponent} from "./pages/search/search.component";
 
 export const routes: Routes = [
-  {
-    path: '',
-    component: AppLayoutComponent,
-    canActivateChild: [authGuard],
-    resolve: {categories: CategoryResolverService},
-    children: [
-      {path: '', component: FeedComponent},
-      {path: 'profile', component: ProfileComponent},
-      {path: 'post', component: PostComponent},
-      {path: 'posts/manage', component: ManagePostsComponent},
-      {path: 'posts/create', component: CreatePostComponent},
-      {path: 'posts/:id/edit', component: UpdatePostComponent},
-      {path: 'posts/:id', component: PostComponent},
-      {path: 'not-found', component: NotFoundComponent},
-      {path: 'unauthorized', component: UnauthorizedComponent},
-      {path: 'posts/categories/:slug', component: CategoryPostsComponent},
-      {path: 'posts/users/:id', component: UserPostsComponent},
-      {path: '**', redirectTo: 'not-found'}
-    ]
-  },
-  {
-    path: '',
-    component: AuthLayoutComponent,
-    canActivateChild: [guestGuard],
-    children: [
-      {path: 'login', component: LoginComponent},
-      {path: 'register', component: RegisterComponent}
-    ]
-  }
+    {
+        path: '',
+        component: AppLayoutComponent,
+        canActivateChild: [authGuard],
+        resolve: {categories: CategoryResolverService},
+        children: [
+            {path: '', component: FeedComponent},
+            {path: 'profile', component: ProfileComponent},
+            {path: 'post', component: PostComponent},
+            {path: 'posts/manage', component: ManagePostsComponent},
+            {path: 'posts/create', component: CreatePostComponent},
+            {path: 'posts/search', component: SearchComponent},
+            {path: 'posts/:id/edit', component: UpdatePostComponent},
+            {path: 'posts/:id', component: PostComponent},
+            {path: 'not-found', component: NotFoundComponent},
+            {path: 'unauthorized', component: UnauthorizedComponent},
+            {path: 'posts/categories/:slug', component: CategoryPostsComponent},
+            {path: 'posts/users/:id', component: UserPostsComponent},
+        ]
+    },
+    {
+        path: '',
+        component: AuthLayoutComponent,
+        canActivateChild: [guestGuard],
+        children: [
+            {path: 'login', component: LoginComponent},
+            {path: 'register', component: RegisterComponent}
+        ]
+    }
 ];

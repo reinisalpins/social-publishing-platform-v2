@@ -5,70 +5,80 @@ import {Post} from '../models/post';
 import {map} from 'rxjs';
 
 interface CreatePostPayload {
-  title: string;
-  content: string;
-  categories: string[]
+    title: string;
+    content: string;
+    categories: string[]
 }
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class PostService {
-  readonly apiService = inject(ApiService);
+    readonly apiService = inject(ApiService);
 
-  createPost(payload: CreatePostPayload) {
-    return this.apiService.post<void>('/api/posts', payload);
-  }
+    createPost(payload: CreatePostPayload) {
+        return this.apiService.post<void>('/api/posts', payload);
+    }
 
-  updatePost(postId: number, payload: CreatePostPayload) {
-    return this.apiService.patch<void>(`/api/posts/${postId}`, payload);
-  }
+    updatePost(postId: number, payload: CreatePostPayload) {
+        return this.apiService.patch<void>(`/api/posts/${postId}`, payload);
+    }
 
-  getAuthUserPosts() {
-    return this.apiService.get<ApiResponse<Post[]>>('/api/user/posts').pipe(
-      map(response => response.data),
-    );
-  }
+    getAuthUserPosts() {
+        return this.apiService.get<ApiResponse<Post[]>>('/api/user/posts').pipe(
+            map(response => response.data),
+        );
+    }
 
-  getPostById(id: number | string) {
-    return this.apiService.get<ApiResponse<Post>>(`/api/posts/${id}`).pipe(
-      map(response => response.data),
-    );
-  }
+    getPostById(id: number | string) {
+        return this.apiService.get<ApiResponse<Post>>(`/api/posts/${id}`).pipe(
+            map(response => response.data),
+        );
+    }
 
-  getAuthUserPostById(id: number | string) {
-    return this.apiService.get<ApiResponse<Post>>(`/api/user/posts/${id}`).pipe(
-      map(response => response.data),
-    );
-  }
+    getAuthUserPostById(id: number | string) {
+        return this.apiService.get<ApiResponse<Post>>(`/api/user/posts/${id}`).pipe(
+            map(response => response.data),
+        );
+    }
 
-  deletePost(id: number | string) {
-    return this.apiService.delete<void>(`/api/posts/${id}`);
-  }
+    deletePost(id: number | string) {
+        return this.apiService.delete<void>(`/api/posts/${id}`);
+    }
 
-  getAllPosts() {
-    return this.apiService.get<ApiResponse<Post[]>>('/api/posts').pipe(
-      map(response => response.data),
-    );
-  }
+    getAllPosts() {
+        return this.apiService.get<ApiResponse<Post[]>>('/api/posts').pipe(
+            map(response => response.data),
+        );
+    }
 
-  createComment(postId: number, content: string) {
-    return this.apiService.post<void>(`/api/posts/${postId}/comments`, {content});
-  }
+    createComment(postId: number, content: string) {
+        return this.apiService.post<void>(`/api/posts/${postId}/comments`, {content});
+    }
 
-  deleteComment(commentId: number) {
-    return this.apiService.delete<void>(`/api/comments/${commentId}`);
-  }
+    deleteComment(commentId: number) {
+        return this.apiService.delete<void>(`/api/comments/${commentId}`);
+    }
 
-  getPostsByCategory(categoryId: number) {
-    return this.apiService.get<ApiResponse<Post[]>>(`/api/categories/${categoryId}/posts`).pipe(
-      map(response => response.data),
-    );
-  }
+    getPostsByCategory(categoryId: number) {
+        return this.apiService.get<ApiResponse<Post[]>>(`/api/categories/${categoryId}/posts`).pipe(
+            map(response => response.data),
+        );
+    }
 
-  getPostsByUser(userId: number) {
-    return this.apiService.get<ApiResponse<Post[]>>(`/api/users/${userId}/posts`).pipe(
-      map(response => response.data),
-    );
-  }
+    getPostsByUser(userId: number) {
+        return this.apiService.get<ApiResponse<Post[]>>(`/api/users/${userId}/posts`).pipe(
+            map(response => response.data),
+        );
+    }
+
+    searchPosts(query: string) {
+        return this.apiService.get<ApiResponse<Post[]>>('/api/posts/search', {
+            params: {
+                query
+            }
+        }).pipe(
+            map(response => response.data),
+        );
+    }
 }

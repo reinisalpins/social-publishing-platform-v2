@@ -50,20 +50,20 @@ export class UserPostsComponent implements OnInit, OnDestroy {
     this.isLoading.set(true);
 
     this.userService.getUserById(userId).pipe(
-      tap((user) => this.user.set(user)),
-      switchMap((user) => this.postService.getPostsByUser(user.id)),
-      tap((posts) => this.posts.set(posts)),
-      catchError((error) => {
-        if (error.status === 404) {
-          this.router.navigate(['/not-found']);
+        tap((user) => this.user.set(user)),
+        switchMap((user) => this.postService.getPostsByUser(user.id)),
+        tap((posts) => this.posts.set(posts)),
+        catchError((error) => {
+          if (error.status === 404) {
+            this.router.navigate(['/not-found']);
 
-          return throwError(() => error)
-        }
-        this.toastService.showToast('Something went wrong while loading posts', 3000, Variant.ERROR);
+            return throwError(() => error)
+          }
+          this.toastService.showToast('Something went wrong while loading posts', 3000, Variant.ERROR);
 
-        return throwError(() => error);
-      }),
-      finalize(() => this.isLoading.set(false)),
+          return throwError(() => error);
+        }),
+        finalize(() => this.isLoading.set(false)),
     ).subscribe();
   }
 }
