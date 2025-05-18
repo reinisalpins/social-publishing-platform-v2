@@ -64,7 +64,7 @@ class PostController
 
     public function userPosts(User $user): PostResourceCollection
     {
-        return PostResourceCollection::make($this->postService->getUserPostsWithRelations($user));
+        return PostResourceCollection::make($this->postService->getLatestUserPostsWithRelations($user));
     }
 
     public function authUserPosts(Request $request): PostResourceCollection

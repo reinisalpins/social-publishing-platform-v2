@@ -65,9 +65,9 @@ class PostService
         return $post->load(['categories', 'comments', 'comments.user', 'user'])->loadCount('comments');
     }
 
-    public function getUserPostsWithRelations(User $user): Collection
+    public function getLatestUserPostsWithRelations(User $user): Collection
     {
-        return $user->posts()->with(['categories', 'user'])->withCount('comments')->get();
+        return $user->posts()->with(['categories', 'user'])->withCount('comments')->latest()->get();
     }
 
     public function getAllPostsWithRelations(): Collection
