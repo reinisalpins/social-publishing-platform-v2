@@ -61,12 +61,12 @@ cd social-publishing-platform-v2
    php artisan serve
    ```
 
-### Frontend Setup (Angular)
+### Frontend Setup (Angular) in a new terminal window
 
 1. **Navigate to the Angular frontend directory:**
 
    ```bash
-   cd ../angular-frontend
+   cd angular-frontend
    ```
 
 2. **Install Node.js dependencies:**
