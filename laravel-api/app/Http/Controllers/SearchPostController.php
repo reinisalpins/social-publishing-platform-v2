@@ -15,7 +15,7 @@ class SearchPostController
     {
         $query = $request->query('query');
 
-        if (!$query) {
+        if (! $query) {
             return PostResourceCollection::make([]);
         }
 
