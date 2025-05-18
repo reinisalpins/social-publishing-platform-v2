@@ -7,23 +7,25 @@ namespace App\Http\Controllers;
 use App\Http\Requests\Comments\StoreCommentRequest;
 use App\Models\Comment;
 use App\Models\Post;
+use App\Services\CommentService;
 use Illuminate\Http\Response;
 
 class CommentController
 {
+    public function __construct(
+        private readonly CommentService $commentService
+    ) {}
+
     public function store(StoreCommentRequest $request, Post $post): Response
     {
-        $post->comments()->create([
-            'content' => $request->input('content'),
-            'user_id' => $request->user()->id,
-        ]);
+        $this->commentService->createComment($post, $request->getData());
 
         return response(status: Response::HTTP_CREATED);
     }
 
     public function destroy(Comment $comment): Response
     {
-        $comment->delete();
+        $this->commentService->deleteComment($comment);
 
         return response(status: Response::HTTP_NO_CONTENT);
     }

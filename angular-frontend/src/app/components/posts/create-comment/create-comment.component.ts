@@ -4,7 +4,7 @@ import {ButtonComponent} from '../../button/button.component';
 import {PostService} from '../../../services/post.service';
 import {FormBuilder, ReactiveFormsModule} from '@angular/forms';
 import {catchError, finalize, tap, throwError} from 'rxjs';
-import {ToastService} from '../../../services/toast.service';
+import {ToastService, Variant} from '../../../services/toast.service';
 
 @Component({
   selector: 'app-create-comment',
@@ -48,6 +48,8 @@ export class CreateCommentComponent {
       catchError((error) => {
         if (error.status === 422 && error.error?.errors) {
           this.errors.set(error.error.errors);
+        } else {
+          this.toast.showToast('Something went wrong', 3000, Variant.ERROR);
         }
         return throwError(() => error);
       })

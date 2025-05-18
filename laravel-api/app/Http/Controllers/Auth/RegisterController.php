@@ -5,15 +5,19 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Requests\Auth\RegisterRequest;
-use App\Models\User;
+use App\Services\UserService;
 use Auth;
 use Illuminate\Http\Response;
 
 class RegisterController
 {
+    public function __construct(
+        private readonly UserService $userService
+    ) {}
+
     public function __invoke(RegisterRequest $request): Response
     {
-        $user = User::create($request->validated());
+        $user = $this->userService->create($request->getData());
 
         Auth::login($user);
 

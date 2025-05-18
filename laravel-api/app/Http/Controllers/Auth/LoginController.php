@@ -11,7 +11,7 @@ use Illuminate\Validation\ValidationException;
 
 class LoginController
 {
-    public function __invoke(LoginRequest $request)
+    public function __invoke(LoginRequest $request): Response
     {
         if (Auth::attempt($request->validated())) {
             $request->session()->regenerate();

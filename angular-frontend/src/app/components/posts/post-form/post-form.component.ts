@@ -9,7 +9,7 @@ import {PostService} from '../../../services/post.service';
 import {catchError, finalize, tap, throwError} from 'rxjs';
 import {Router} from '@angular/router';
 import {Post} from '../../../models/post';
-import {ToastService} from '../../../services/toast.service';
+import {ToastService, Variant} from '../../../services/toast.service';
 
 @Component({
   selector: 'app-post-form',
@@ -76,6 +76,8 @@ export class PostFormComponent implements OnInit {
       catchError((error) => {
         if (error.status === 422 && error.error?.errors) {
           this.errors.set(error.error.errors);
+        } else {
+          this.toastService.showToast('Something went wrong', 3000, Variant.ERROR);
         }
         return throwError(() => error);
       }),
