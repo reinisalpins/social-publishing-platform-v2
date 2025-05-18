@@ -1,6 +1,5 @@
 # Social Publishing Platform
 
-API built using Laravel 11, controllers structured using resource controller pattern (https://laravel.com/docs/11.x/controllers#resource-controllers)
 ## Prerequisites
 
 - Node.js and npm
