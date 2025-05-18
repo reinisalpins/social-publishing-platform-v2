@@ -43,9 +43,6 @@ Route::middleware('auth:sanctum')->group(function () {
 });
 
 Route::middleware('guest')->group(function () {
-    /**
-     * Auth routes
-     */
     Route::post('/login', LoginController::class);
     Route::post('/register', RegisterController::class);
 });
