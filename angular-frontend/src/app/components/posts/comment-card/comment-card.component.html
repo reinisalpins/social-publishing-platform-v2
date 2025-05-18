@@ -3,7 +3,7 @@
     <div class="flex items-center gap-4 text-xs mb-3">
       <span class="font-medium">{{ comment().user.name }}</span>
       <span>|</span>
-      <span>{{ comment().createdAt | date }}</span>
+      <span>{{ comment().createdAt | date: 'medium' }}</span>
     </div>
 
     <p class="text-sm">

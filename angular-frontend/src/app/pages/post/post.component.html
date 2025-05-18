@@ -19,6 +19,8 @@
       <a [routerLink]="['/posts', 'users', currentPost.user!.id]"
          class="hover:text-black text-gray-500 text-sm">{{ currentPost.user!.name }}</a>
 
+      <span class="text-gray-500 text-sm">{{ currentPost.createdAt | date: 'medium' }}</span>
+
       <h1 class="font-semibold text-xl">{{ currentPost.title }}</h1>
 
       <p>

@@ -7,6 +7,7 @@ import {Post} from '../../models/post';
 import {ToastService, Variant} from '../../services/toast.service';
 import {LoaderComponent} from '../../components/loader/loader.component';
 import {CreateCommentComponent} from '../../components/posts/create-comment/create-comment.component';
+import {DatePipe} from '@angular/common';
 
 @Component({
   selector: 'app-post',
@@ -14,7 +15,8 @@ import {CreateCommentComponent} from '../../components/posts/create-comment/crea
     CommentCardComponent,
     LoaderComponent,
     CreateCommentComponent,
-    RouterLink
+    RouterLink,
+    DatePipe
   ],
   templateUrl: './post.component.html',
   styleUrl: './post.component.css'
