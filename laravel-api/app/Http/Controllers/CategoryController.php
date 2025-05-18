@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 
 class CategoryController
 {
-    public function index(Request $request): CategoryResourceCollection
+    public function index(): CategoryResourceCollection
     {
         return CategoryResourceCollection::make(Category::all());
     }
