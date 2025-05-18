@@ -13,7 +13,7 @@ API built using Laravel 11, controllers structured using resource controller pat
 ### Clone the Repository
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/reinisalpins/social-publishing-platform-v2.git
 cd social-publishing-platform
 ```
 
